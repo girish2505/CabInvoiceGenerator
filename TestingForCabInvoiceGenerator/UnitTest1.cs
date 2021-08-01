@@ -59,11 +59,30 @@ namespace TestingForCabInvoiceGenerator
         public void Return_Multiple_Rides_TotalFare()
         {
             InvoiceGenerator invoice = new InvoiceGenerator(RideType.NORMAL_RIDE);
-            Ride[] rides = { new Ride(5,10), new Ride(5, 10) };
-
+            Ride[] rides = { new Ride(5, 10), new Ride(5, 10) };
             InvoiceSummary summary = new InvoiceSummary(2, 120);
             InvoiceSummary expected = invoice.CalculateFare(rides);
             Assert.AreEqual(summary.totalFare, expected.totalFare);
+        }
+        [TestMethod]
+        public void Return_Multiple_Rides_AverageFare()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator(RideType.NORMAL_RIDE);
+            Ride[] rides = { new Ride(5, 10), new Ride(5, 10) };
+
+            InvoiceSummary summary = new InvoiceSummary(2, 120);
+            InvoiceSummary expected = invoice.CalculateFare(rides);
+            Assert.AreEqual(summary.avgFare, expected.avgFare);
+        }
+        [TestMethod]
+        public void Return_Multiple_Rides_NumofRides()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator(RideType.NORMAL_RIDE);
+            Ride[] rides = { new Ride(5, 10), new Ride(5, 10) };
+
+            InvoiceSummary summary = new InvoiceSummary(2, 120);
+            InvoiceSummary expected = invoice.CalculateFare(rides);
+            Assert.AreEqual(summary.numOfRides, expected.numOfRides);
         }
     }
 }
