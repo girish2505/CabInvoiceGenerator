@@ -84,5 +84,18 @@ namespace TestingForCabInvoiceGenerator
             InvoiceSummary expected = invoice.CalculateFare(rides);
             Assert.AreEqual(summary.numOfRides, expected.numOfRides);
         }
+        [TestMethod]
+        public void Given_UserId_Return_Fare()
+        {
+            Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
+            RideRepository rideRepository = new RideRepository();
+            rideRepository.AddRide(1, rides);
+            rideRepository.AddRide(2, rides);
+            var rideArray = rideRepository.GetRides(1);
+            InvoiceGenerator invoice = new InvoiceGenerator(RideType.NORMAL_RIDE);
+            InvoiceSummary summary = new InvoiceSummary(2, 30.0);
+            InvoiceSummary expected = invoice.CalculateFare(rideArray);
+            Assert.AreEqual(summary.totalFare, expected.totalFare);
+        }
     }
 }

@@ -7,12 +7,14 @@ namespace CabInvoiceGenerator
     public class InvoiceGenerator
     {
         RideType type;
+        public RideRepository rideRepository;
         private double MINIMUM_COST_PER_KM;
         private int COST_PER_TIME;
         private double MINIMUM_FARE;
         public InvoiceGenerator(RideType type)
         {
             this.type = type;
+            this.rideRepository =new RideRepository();
             if (type.Equals(RideType.NORMAL_RIDE))
             {
                 this.MINIMUM_COST_PER_KM = 10;
